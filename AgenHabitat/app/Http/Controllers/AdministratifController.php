@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inspection;
+use App\Models\Rapport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdministratifController extends Controller
 {
@@ -12,7 +15,15 @@ class AdministratifController extends Controller
      */
     public function index()
     {
-        return view('administratif.index');
+
+        $inspection= Inspection::with('rapport','utilisateur','tournee')->get();
+        $rapport= Rapport::with('inspection')->get();
+        $utilisateur= Rapport::with('inspection')->get();
+        $tournee= Rapport::with('inspection')->get();
+
+        return view('administratif.index',compact('inspection','rapport','utilisateur','tournee'));
+
+
        /* if(Auth::check()){
             return redirect('administratif.index');
         }
@@ -25,7 +36,7 @@ class AdministratifController extends Controller
      */
     public function create()
     {
-        //
+        return view('administratif.create');
     }
 
     /**
@@ -33,15 +44,25 @@ class AdministratifController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $report = new Inspection;
+        $report->title = $request->input('title');
+        $report->description = $request->input('description');
+        $report->save();
+        return redirect()->route('reports.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($NumInspection)
     {
-        return view('administratif.show');
+        $inspection= Inspection::with('rapport','utilisateur','tournee')->get();
+        $rapport= Rapport::with('inspection')->get();
+        $utilisateur= Rapport::with('inspection')->get();
+        $tournee= Rapport::with('inspection')->get();
+        $inspections = Inspection::find($NumInspection);
+        return view('administratif.show', ['inspections' => $inspections],compact('inspection','rapport','utilisateur','tournee'));
+
     }
 
     /**
@@ -49,12 +70,8 @@ class AdministratifController extends Controller
      */
     public function edit(string $id)
     {
-        // get the shark
-        $shark = shark::find($id);
-
-        // show the edit form and pass the shark
-        return View::make('sharks.edit')
-            ->with('shark', $shark);
+        $report = Inspection::find($id);
+        return view('reports.edit', ['report' => $report]);
     }
 
     /**
@@ -62,32 +79,12 @@ class AdministratifController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'name'       => 'required',
-            'email'      => 'required|email',
-            'shark_level' => 'required|numeric'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        $report = Inspection::find($id);
+        $report->title = $request->input('title');
+        $report->description = $request->input('description');
+        $report->save();
+        return redirect()->route('reports.index');
 
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('sharks/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $shark = shark::find($id);
-            $shark->name       = Input::get('name');
-            $shark->email      = Input::get('email');
-            $shark->shark_level = Input::get('shark_level');
-            $shark->save();
-
-            // redirect
-            Session::flash('message', 'Successfully updated shark!');
-            return Redirect::to('sharks');
-        }
     }
 
     /**
@@ -95,13 +92,10 @@ class AdministratifController extends Controller
      */
     public function destroy(string $id)
     {
-        // delete
-        $shark = shark::find($id);
-        $shark->delete();
+        $report = Report::find($id);
+        $report->delete();
+        return redirect()->route('reports.index');
 
-        // redirect
-        Session::flash('message', 'Successfully deleted the shark!');
-        return Redirect::to('sharks');
     }
 
 

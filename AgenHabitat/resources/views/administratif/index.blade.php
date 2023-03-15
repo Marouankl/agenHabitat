@@ -7,6 +7,41 @@
     <title>Tableau de bord administrateur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+<style>
+    /* Style pour la section des tournées */
+    #tournées {
+        width: 50%;
+        margin: 50px auto;
+        border-collapse: collapse;
+    }
+    #tournées th {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px;
+        text-align: center;
+    }
+    #tournées td, #tournées th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    #tournées tr:nth-child(even){background-color: #f2f2f2;}
+    #tournées tr:hover {background-color: #ddd;}
+
+    /* Style pour le diagramme en camembert */
+    #camembert {
+        width: 50%;
+        margin: 50px auto;
+        text-align: center;
+    }
+    #camembert h2 {
+        font-size: 24px;
+    }
+    #camembert canvas {
+        width: 300px;
+        height: 300px;
+    }
+</style>
 
 <body>
 <header class="bg-light">
@@ -25,7 +60,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Accueil </a>
+                                <a class="nav-link" href="{{ route('administratif.index')}}">Accueil </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Rapports</a>
@@ -57,39 +92,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Titre du rapport 1</td>
-                    <td>Auteur 1</td>
-                    <td>12/03/2023</td>
-                    <td><span class="badge bg-success">Signé</span></td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Détails</a>
-                        <a href="#" class="btn btn-warning">Modifier</a>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Titre du rapport 2</td>
-                    <td>Auteur 2</td>
-                    <td>10/03/2023</td>
-                    <td><span class="badge bg-warning text-dark">En attente</span></td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Détails</a>
-                        <a href="#" class="btn btn-warning">Modifier</a>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Titre du rapport 3</td>
-                    <td>Auteur 3</td>
-                    <td>08/03/2023</td>
-                    <td><span class="badge bg-danger">Non signé</span></td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Détails</a>
-                        <a href="#" class="btn btn-warning">Modifier</a>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
-                    </td>
-                </tr>
+
+                @foreach ($inspection as $inspections)
+
+                    <tr>
+                        <td>{{$inspections->NumInspection }}</td>
+                        <td>{{$inspections->utilisateur->Nom}}</td>
+                        <td>{{$inspections->InfoCalendrier}}</td>
+                        <td><span class="badge bg-success"></span></td>
+                        <td>
+                            <a href="{{ route('administratif.show.show', ['NumInspection' => $inspections->NumInspection]) }}" class="btn btn-primary">Détails</a>
+                            <a href="#" class="btn btn-warning">Modifier</a>
+                            <a href="#" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                @endforeach
                 <!-- Ajouter plus de rapports ici -->
                 </tbody>
             </table>
@@ -154,41 +171,42 @@
                 </div>
             </section>
     </section>
-            <section class="tournées">
-                <h2>Suivi des tournées</h2>
-                <div class="tournées-liste">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Inspecteur</th>
-                            <th>Etat de l'inspection</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>03/12/2023</td>
-                            <td>Jean Dupont</td>
-                            <td>En cours</td>
-                        </tr>
-                        <tr>
-                            <td>02/28/2023</td>
-                            <td>Marie Martin</td>
-                            <td>Terminé</td>
-                        </tr>
-                        <tr>
-                            <td>02/27/2023</td>
-                            <td>Paul Durand</td>
-                            <td>En cours</td>
-                        </tr>
-                        <tr>
-                            <td>02/25/2023</td>
-                            <td>Lucie Dubois</td>
-                            <td>Terminé</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <section>
+            <!-- Liste des tournées en cours -->
+            <table id="tournées">
+                <caption>Liste des tournées en cours</caption>
+                <thead>
+                <tr>
+                    <th>Nom de la tournée</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Tournée 1</td>
+                    <td>01/03/2023</td>
+                    <td>07/03/2023</td>
+                </tr>
+                <tr>
+                    <td>Tournée 2</td>
+                    <td>05/03/2023</td>
+                    <td>11/03/2023</td>
+                </tr>
+                <tr>
+                    <td>Tournée 3</td>
+                    <td>10/03/2023</td>
+                    <td>16/03/2023</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Diagramme en camembert des états des inspections -->
+            <div id="camembert">
+                <h2>États des inspections</h2>
+                <canvas id="chart"></canvas>
+            </div>
+
                 <section class="tri-tournées text-center">
                     <h3>Tri des tournées</h3>
                     <div class="row justify-content-center">
@@ -233,17 +251,32 @@
                                 <td>Jean Dupont</td>
                                 <td>Signé</td>
                             </tr>
-                            <tr>
-                                <td>#12344</td>
-                                <td>02/28/2023</td>
-                                <td>Marie Martin</td>
-                                <td>En attente de signature</td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['En cours', 'Terminées', 'En attente'],
+            datasets: [{
+                backgroundColor: ['#4CAF50', '#FFC107', '#E91E63'],
+                data: [20, 70, 10]
+            }]
+        },
+        options: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    });
+</script>
 </body>
+
 </html>

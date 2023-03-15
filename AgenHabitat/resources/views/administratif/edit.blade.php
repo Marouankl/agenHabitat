@@ -7,7 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-
+    <style>
+        /* Style pour la section des tournées */
+        #tournées {
+            width: 50%;
+            margin: 50px auto;
+            border-collapse: collapse;
+        }
+        #tournées th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px;
+            text-align: center;
+        }
+        #tournées td, #tournées th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #tournées tr:nth-child(even){background-color: #f2f2f2;}
+        #tournées tr:hover {background-color: #ddd;}
+    </style>
 </head>
 <body>
 <header class="bg-light">
@@ -41,5 +61,27 @@
         </div>
     </div>
 </header>
+<section>
+    <!-- Liste des tournées en cours -->
+    <table id="tournées">
+        <caption>Liste des tournées en cours</caption>
+        <thead>
+        <tr>
+            <th>Nom de la tournée</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Tournée 1</td>
+            <td>01/03/2023</td>
+            <td>07/03/2023</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+
 </body>
 </html>
