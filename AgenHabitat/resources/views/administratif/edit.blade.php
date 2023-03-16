@@ -61,26 +61,96 @@
         </div>
     </div>
 </header>
-<section>
-    <!-- Liste des tournées en cours -->
-    <table id="tournées">
-        <caption>Liste des tournées en cours</caption>
-        <thead>
-        <tr>
-            <th>Nom de la tournée</th>
-            <th>Date de début</th>
-            <th>Date de fin</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Tournée 1</td>
-            <td>01/03/2023</td>
-            <td>07/03/2023</td>
-        </tr>
-        </tbody>
-    </table>
 
+<section>
+    <div class="container">
+        @if (isset($inspections))
+        <form action="{{ route('administratif.update',$inspections) }}" method="POST" class="mx-auto">
+        @method('PUT')
+            @else
+                <form action="{{ route('administratif.store') }}" method="POST" class="mx-auto">
+                    @endif
+        <fieldset>
+            <legend>Pour client</legend>
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input id="nom" type="text" name="title" class="form-control" value="{{$inspections->tournee->NomClient}}">
+            </div>
+            <div class="form-group">
+                <label for="date">Date de rendez-vous :</label>
+                <input id="date" name="date" class="form-control" value="{{$inspections->tournee->DateRDV}}">
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone :</label>
+                <input id="telephone" name="telephone" class="form-control" value="{{$inspections->tournee->Telephone}}">
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse :</label>
+                <input id="adresse" name="adresse" class="form-control" value="{{$inspections->tournee->AdresseClient}}">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail :</label>
+                <input id="email" name="email" class="form-control" value="{{$inspections->tournee->Mail}}">
+            </div>
+            <div class="form-group">
+                <label for="NumLocataire">Numero Locataire :</label>
+                <input id="NumLocataire" name="NumLocataire" type="text" class="form-control" value="{{$inspections->tournee->NumLocataire}}">
+            </div>
+            <div class="form-group">
+                <label for="remarque">Remarque :</label>
+                <input id="remarque" name="remarque" class="form-control" value="{{$inspections->tournee->Remarque}}">
+            </div>
+        </fieldset>
+        <div class="container mt-4">
+                <fieldset>
+                    <legend>Informations sur l'inspection</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="TypeBatiment">Type de Batiment :</label>
+                                <input type="text" class="form-control" id="TypeBatiment" name="TypeBatiment" value="{{$inspections->TypeBatiment}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="AnneeConstruction">Annee Construction :</label>
+                                <input type="text" class="form-control" id="AnneeConstruction" name="AnneeConstruction" value="{{$inspections->AnneeConstruction}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="SurfaceHabitable">Surface habitable :</label>
+                                <input type="text" class="form-control" id="SurfaceHabitable" name="SurfaceHabitable" value="{{$inspections->SurfaceHabitable}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ReleveConsoChauffage">Releve Consomation Chauffage :</label>
+                                <input type="text" class="form-control" id="ReleveConsoChauffage" name="ReleveConsoChauffage" value="{{$inspections->ReleveConsoChauffage}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ReleveConsoEau">Releve Consomation Eau :</label>
+                                <input type="text" class="form-control" id="ReleveConsoEau" name="ReleveConsoEau" value="{{$inspections->ReleveConsoEau}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ReleveGES">Releve GES :</label>
+                                <input type="text" class="form-control" id="ReleveGES" name="ReleveGES" value="{{$inspections->ReleveGES}}">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+        </div>
+
+        <fieldset>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </fieldset>
+    </form>
+    </div>
 </section>
 
 </body>

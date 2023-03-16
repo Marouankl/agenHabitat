@@ -101,9 +101,9 @@
                         <td>{{$inspections->InfoCalendrier}}</td>
                         <td><span class="badge bg-success"></span></td>
                         <td>
-                            <a href="{{ route('administratif.show.show', ['NumInspection' => $inspections->NumInspection]) }}" class="btn btn-primary">Détails</a>
-                            <a href="#" class="btn btn-warning">Modifier</a>
-                            <a href="#" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ route('administratif.show', $inspections->NumInspection) }}" class="btn btn-primary">Détails</a>
+                            <a href="{{ route('administratif.edit', $inspections->NumInspection) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ route('administratif.delete', $inspections->NumInspection) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 @endforeach
@@ -111,9 +111,7 @@
                 </tbody>
             </table>
         </div>
-        <div style="text-align: center;">
-            <a href="#" class="btn btn-primary">Ajouter un rapport</a>
-        </div>
+
     </section>
 
     <section class="stats">
@@ -183,21 +181,14 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach ($inspection as $inspections)
                 <tr>
-                    <td>Tournée 1</td>
-                    <td>01/03/2023</td>
-                    <td>07/03/2023</td>
+
+                    <td>{{$inspections->tournee->NomClient }} </td>
+                    <td>{{$inspections->InfoCalendrier }}</td>
+                    <td>{{$inspections->tournee->DateRDV }}</td>
                 </tr>
-                <tr>
-                    <td>Tournée 2</td>
-                    <td>05/03/2023</td>
-                    <td>11/03/2023</td>
-                </tr>
-                <tr>
-                    <td>Tournée 3</td>
-                    <td>10/03/2023</td>
-                    <td>16/03/2023</td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
 
@@ -245,13 +236,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach ($inspection as $inspections)
                             <tr>
-                                <td>#12345</td>
-                                <td>03/12/2023</td>
-                                <td>Jean Dupont</td>
-                                <td>Signé</td>
+                                <td>#{{$inspections->NumInspection }}</td>
+                                <td>{{$inspections->InfoCalendrier }}</td>
+                                <td>{{$inspections->utilisateur->Nom }}</td>
+                                <td>Signature </td>
                             </tr>
-
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

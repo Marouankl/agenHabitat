@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/','App\Http\Controllers\Controller@welcomes')->name('welcome.welcomes');
 Route::resource("/administratif",App\Http\Controllers\AdministratifController::class);
-Route::get('/administratif/show/{NumInspection}','App\Http\Controllers\AdministratifController@show')->name('administratif.show.show');
-
-
-
+Route::get('/administratif/show/{NumInspection}','App\Http\Controllers\AdministratifController@show')->name('administratif.show');
+Route::get('/administratif/edit/{NumInspection}','App\Http\Controllers\AdministratifController@edit')->name('administratif.edit');
+Route::get('/administratif/delete/{NumInspection}/delete','App\Http\Controllers\AdministratifController@destroy')->name('administratif.delete');
+Route::post('/administratif','App\Http\Controllers\AdministratifController@update')->name('administratif.update');
 
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login/administratif','login')->name('administratif.login.login');

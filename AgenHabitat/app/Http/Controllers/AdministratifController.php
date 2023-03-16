@@ -44,23 +44,37 @@ class AdministratifController extends Controller
      */
     public function store(Request $request)
     {
-        $report = new Inspection;
-        $report->title = $request->input('title');
-        $report->description = $request->input('description');
-        $report->save();
-        return redirect()->route('reports.index');
+        $inspections = new Inspection;
+        $inspections->tournee->NomClient= $request->input('NomClient');
+        $inspections->tournee->DateRDV = $request->input('DateRDV');
+        $inspections->tournee->AdresseClient = $request->input('AdresseClient');
+        $inspections->tournee->Telephone = $request->input('Telephone');
+        $inspections->tournee->Mail = $request->input('Mail');
+        $inspections->tournee->NumLocataire = $request->input('NumLocataire');
+        $inspections->tournee->Remarque= $request->input('Remarque');
+        $inspections->utilisateur->Nom= $request->input('Nom');
+        $inspections->NumInspection = $request->input('NumInspection');
+        $inspections->TypeBatiment= $request->input('TypeBatiment');
+        $inspections->AnneeConstruction= $request->input('AnneeConstruction');
+        $inspections->SurfaceHabitable= $request->input('SurfaceHabitable');
+        $inspections->ReleveConsoChauffage= $request->input('ReleveConsoChauffage');
+        $inspections->ReleveConsoEau= $request->input('ReleveConsoEau');
+        $inspections->ReleveConsoRefroidissement= $request->input('ReleveConsoRefroidissement');
+        $inspections->ReleveGES= $request->input('ReleveGES');
+        $inspections->save();
+        return redirect()->route('administratif.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($NumInspection)
+    public function show( $NumInspection)
     {
+        $inspections = Inspection::find($NumInspection);
         $inspection= Inspection::with('rapport','utilisateur','tournee')->get();
         $rapport= Rapport::with('inspection')->get();
         $utilisateur= Rapport::with('inspection')->get();
         $tournee= Rapport::with('inspection')->get();
-        $inspections = Inspection::find($NumInspection);
         return view('administratif.show', ['inspections' => $inspections],compact('inspection','rapport','utilisateur','tournee'));
 
     }
@@ -68,33 +82,51 @@ class AdministratifController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $NumInspection)
     {
-        $report = Inspection::find($id);
-        return view('reports.edit', ['report' => $report]);
+        $inspections = Inspection::find($NumInspection);
+        $inspection= Inspection::with('rapport','utilisateur','tournee')->get();
+        $rapport= Rapport::with('inspection')->get();
+        $utilisateur= Rapport::with('inspection')->get();
+        $tournee= Rapport::with('inspection')->get();
+        return view('administratif.edit', ['inspections' => $inspections],compact('inspection','rapport','utilisateur','tournee'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $NumInspection)
     {
-        $report = Inspection::find($id);
-        $report->title = $request->input('title');
-        $report->description = $request->input('description');
-        $report->save();
-        return redirect()->route('reports.index');
+        $inspections = Inspection::find($NumInspection);
+        $inspections->tournee->NomClient= $request->input('NomClient');
+        $inspections->tournee->DateRDV = $request->input('DateRDV');
+        $inspections->tournee->AdresseClient = $request->input('AdresseClient');
+        $inspections->tournee->Telephone = $request->input('Telephone');
+        $inspections->tournee->Mail = $request->input('Mail');
+        $inspections->tournee->NumLocataire = $request->input('NumLocataire');
+        $inspections->tournee->Remarque= $request->input('Remarque');
+        $inspections->utilisateur->Nom= $request->input('Nom');
+        $inspections->NumInspection = $request->input('NumInspection');
+        $inspections->TypeBatiment= $request->input('TypeBatiment');
+        $inspections->AnneeConstruction= $request->input('AnneeConstruction');
+        $inspections->SurfaceHabitable= $request->input('SurfaceHabitable');
+        $inspections->ReleveConsoChauffage= $request->input('ReleveConsoChauffage');
+        $inspections->ReleveConsoEau= $request->input('ReleveConsoEau');
+        $inspections->ReleveConsoRefroidissement= $request->input('ReleveConsoRefroidissement');
+        $inspections->ReleveGES= $request->input('ReleveGES');
+        $inspections->save();
+        return redirect()->route('administratif.show');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $NumInspection)
     {
-        $report = Report::find($id);
-        $report->delete();
-        return redirect()->route('reports.index');
+        $inspection= Inspection::find($NumInspection);
+        $inspection->delete();
+        return redirect()->route('administratif.index')->with('success','rapport deleted successfully');;
 
     }
 
