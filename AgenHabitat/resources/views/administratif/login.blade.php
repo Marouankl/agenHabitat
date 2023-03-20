@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Agent Administratif | Agence Habitat</title>
+    <title>Login Everyone | Agen Habitat</title>
 
     <style>
         body {
@@ -61,20 +61,24 @@
 
 <body>
 <div class="container">
+    @if(Request::get("msg_notAuthenticated"))
+        <span class="text-danger">{{Request::get("msg_notAuthenticated")}}</span>
+    @endif
     <img src="https://www.agenhabitat.fr/fileadmin/templates/master/assets/assets_site_agen_habitat/img/svg/done/logo.svg" alt="Logo Agence Habitat" class="logo">
-    <h1> Agent Administratif</h1>
-    <form action="{{route('administratif.index.ValiderLogin')}}" method="post">
-        @csrf
+    <h1> Bonjour, veuillez vous connecter ici </h1>
+    <form action="{{route('check')}}" method="post">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+
         <label for="email">Identifiant</label>
-        <input type="email" id="email" name="email" required>
+        <input type="text" id="email" name="email" required>
             @if($errors->has('email'))
-                  <span class="text-denger">{{$errors->first('name')}}</span>
+                  <span class="text-danger">{{$errors->first('name')}}</span>
             @endif
 
         <label for="password">Mot de passe</label>
         <input type="password" id="password" name="password" required>
             @if($errors->has('password'))
-                <span class="text-denger">{{$errors->first('password')}}</span>
+                <span class="text-danger">{{$errors->first('password')}}</span>
             @endif
         <button type="submit">Se connecter</button>
     </form>
