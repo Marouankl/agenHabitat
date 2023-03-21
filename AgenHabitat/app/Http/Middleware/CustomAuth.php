@@ -18,13 +18,19 @@ class CustomAuth
     {
         // A chaque fois qu'une requête est fait, on va vérifier si l'Utilisateur qui fait la requête est connu (dans la base de donnée) ou pas
         $customAuth = new CustomLoginController(); //le Controller qu'on utilise
+        $isConnected = false;
         // S'il n'y a pas de session
-            //check session si il y a un utilisateur dedans 
-                // si il n'y a pas d'utilisateur dans la session : 
-        $isConnected = $customAuth->checkLogin($request); // check dans la base de donnée
+        if(session()->missing('utilisateur')){
+            // si il n'y a pas d'utilisateur dans la session : 
+            $isConnected = $customAuth->checkLogin($request); // check dans la base de donnée
 
+        }else if(session()->has('utilisateur')){
+            //check session si il y a un utilisateur dedans 
                 // si il y a un utilisateur dans la session
                     // check dans la session globale 
+            $isConnected = $customAuth->checkSession(session('utilisateur'));
+        }
+
 
         if($isConnected){
             return $next($request);

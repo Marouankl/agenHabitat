@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomLoginController;
+use App\Http\Controllers\InspecteurController;
 use App\Http\Controllers\LoginController;
 use Doctrine\DBAL\Schema\View;
 use Illuminate\Support\Facades\Route;
@@ -22,14 +23,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CustomLoginController::class, 'login'])->name('login');
 
 // La route qui check tous (vraiment tous) les logins, met l'utilisateur en session si reconnu depuis la bdd ou la session en cours
-Route::post('/checkLogin', [CustomLoginController::class, 'checkLogin'])
-    ->name('check')
+Route::post('/checkLogin', [CustomLoginController::class, 'checkLogin'])->name('check');
+
+// Route pour la redirection des Inspecteurs vers leur menu
+Route::get('/inspecteur', [InspecteurController::class, 'index'])
+    ->name('inspecteur.index')
     ->middleware('auth.custom');
 
-// Route pour la redirection des Inspecteurs
-// Route::get('/inspecteur', [InspecteurController::class, 'index'])
-    //->name('inspecteur.index')
-    //->middleware('auth.custom');
+// Routes des boutons du menu Inspecteur 
+Route::controller(InspecteurController::class)->group(function(){
+    Route::get('/inspection', 'index')->name('inspecteur.form');
+    Route::post('/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection');
+    Route::post('/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection');
+    Route::post('/tournee', 'tournees')->name('inspecteur.tournee');
+})->middleware('auth.custom'); // toutes ces routes vont être sujet à vérification d'identifiants en session
 
 
 
