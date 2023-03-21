@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/','App\Http\Controllers\Controller@welcomes')->name('welcome.welcomes'); la route de base de laravel
 
 // Une route unique pour l'index , qui sera, dans tous les cas, la page de connexion
-    //  Même si tu es Admin ou Inspecteur ou Super Admin
+//  Même si tu es Admin ou Inspecteur ou Super Admin
 Route::get('/', [CustomLoginController::class, 'login'])->name('login');
+
 // La route qui check tous (vraiment tous) les logins, met l'utilisateur en session si reconnu depuis la bdd ou la session en cours
 Route::post('/checkLogin', [CustomLoginController::class, 'checkLogin'])
     ->name('check')
@@ -32,7 +33,7 @@ Route::post('/checkLogin', [CustomLoginController::class, 'checkLogin'])
 
 
 
-// Route pour la redirection des Administratifs (return)
+// Route pour la redirection des Administratifs
 Route::get("/administratif", [App\Http\Controllers\AdministratifController::class, 'index'])->name('administrateur.index');
 
 Route::controller(LoginController::class)->group(function (){

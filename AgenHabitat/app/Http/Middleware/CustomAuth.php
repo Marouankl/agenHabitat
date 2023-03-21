@@ -20,10 +20,11 @@ class CustomAuth
         $customAuth = new CustomLoginController(); //le Controller qu'on utilise
         // S'il n'y a pas de session
             //check session si il y a un utilisateur dedans 
-                // si il n'y a pas d'utilisateur dans la session () : 
-        $isConnected = $customAuth->checkLogin($request);
+                // si il n'y a pas d'utilisateur dans la session : 
+        $isConnected = $customAuth->checkLogin($request); // check dans la base de donnée
 
                 // si il y a un utilisateur dans la session
+                    // check dans la session globale 
 
         if($isConnected){
             return $next($request);

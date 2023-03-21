@@ -26,7 +26,7 @@ class CustomLoginController extends Controller
         foreach($utilisateurs as $id => $user){
             if($user->getAttribute('Nom') == $emailInput && $user->getAttribute('PassWord') == $passwordInput){
                 // il est là
-                // si utilisateur présent dans la base de donnée -> mis en session -> redirection vers 
+                // si utilisateur présent dans la base de donnée -> mis en session -> redirection vers la page correspondant
                 session(['utilisateur' => $user]);
                 // Check du role de l'utilisateur 
                 $role = $user->getRole()[0];
