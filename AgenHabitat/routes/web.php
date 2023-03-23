@@ -32,10 +32,10 @@ Route::get('/inspecteur', [InspecteurController::class, 'index'])
 
 // Routes des boutons du menu Inspecteur 
 Route::controller(InspecteurController::class)->group(function(){
-    Route::get('/inspection', 'newInspection')->name('inspecteur.form');
-    Route::post('/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection');
-    Route::post('/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection');
-    Route::post('/tournee', 'tournees')->name('inspecteur.tournee');
+    Route::get('/inspecteur/inspection', 'newInspection')->name('inspecteur.form');
+    Route::post('/inspecteur/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection');
+    Route::post('/inspecteur/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection');
+    Route::post('/inspecteur/tournee', 'tournees')->name('inspecteur.tournee');
 })->middleware('auth.custom'); // toutes ces routes vont être sujet à vérification d'identifiants en session
 
 

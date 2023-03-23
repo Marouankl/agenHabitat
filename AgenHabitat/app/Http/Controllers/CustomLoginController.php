@@ -31,6 +31,7 @@ class CustomLoginController extends Controller
         $emailInput = $request->Input('email');
         $passwordInput = $request->Input('password');
         $utilisateurs = Utilisateur::all();
+        $pasTrouve = true;
         // echo '<pre>';
         //     var_dump($emailInput);
         //     var_dump($passwordInput);
@@ -39,6 +40,7 @@ class CustomLoginController extends Controller
         foreach($utilisateurs as $id => $user){
             if($user->getAttribute('Nom') == $emailInput && $user->getAttribute('PassWord') == $passwordInput){
                 // il est là
+                $pasTrouve = false;
                 // si utilisateur présent dans la base de donnée -> mis en session -> redirection vers la page correspondant
                 session(['utilisateur' => $user]);
                 // Check du role de l'utilisateur 
@@ -54,7 +56,8 @@ class CustomLoginController extends Controller
         }
 
         // S'il s'agit d'un requête provenant de la page d'acceuil de login
-        if($request->getRequestUri() == "/checkLogin") return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
+        // if($request->getRequestUri() == "/checkLogin") return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
+        if($pasTrouve) return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
 
         // si l'utilisateur n'est pas reconnu lors des requêtes subséquentes, redirect vers login 'return view('login');
         return false;
