@@ -32,7 +32,7 @@ Route::get('/inspecteur', [InspecteurController::class, 'index'])
 
 // Routes des boutons du menu Inspecteur 
 Route::controller(InspecteurController::class)->group(function(){
-    Route::get('/inspection', 'index')->name('inspecteur.form');
+    Route::get('/inspection', 'newInspection')->name('inspecteur.form');
     Route::post('/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection');
     Route::post('/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection');
     Route::post('/tournee', 'tournees')->name('inspecteur.tournee');
