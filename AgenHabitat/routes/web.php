@@ -30,13 +30,14 @@ Route::get('/inspecteur', [InspecteurController::class, 'index'])
     ->name('inspecteur.index')
     ->middleware('auth.custom');
 
-// Routes des boutons du menu Inspecteur 
+// Routes des boutons du menu Inspecteur
+// toutes ces routes vont être sujet à vérification d'identifiants en session 
 Route::controller(InspecteurController::class)->group(function(){
-    Route::get('/inspecteur/inspection', 'newInspection')->name('inspecteur.form');
-    Route::post('/inspecteur/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection');
-    Route::post('/inspecteur/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection');
-    Route::post('/inspecteur/tournee', 'tournees')->name('inspecteur.tournee');
-})->middleware('auth.custom'); // toutes ces routes vont être sujet à vérification d'identifiants en session
+    Route::any('/inspecteur/inspection', 'newInspection')->name('inspecteur.form')->middleware('auth.custom');
+    Route::post('/inspecteur/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection')->middleware('auth.custom');
+    Route::post('/inspecteur/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection')->middleware('auth.custom');
+    Route::post('/inspecteur/tournee', 'tournees')->name('inspecteur.tournee')->middleware('auth.custom');
+}); 
 
 
 

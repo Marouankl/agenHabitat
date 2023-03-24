@@ -10,7 +10,7 @@ class InspecteurController extends Controller
 
     // après appui bouton menu 'Inspection'
     public function newInspection(Request $req){
-        return view('inspecteur.inspectionForm');
+        return view('inspecteur.inspectionForm')->with('user', session('utilisateur'));
     }
 
     // va vers la page de menu pour l'inspecteur (Ecran Tablette )

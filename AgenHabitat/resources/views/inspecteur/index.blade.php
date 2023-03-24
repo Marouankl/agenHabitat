@@ -11,10 +11,10 @@
 
     <div class="container text-center min-vh-100">
 
-        <div class="row align-items-start" style="min-height:30vh;">
-            <!-- Le menu header tablette -->
-            @include('inspecteur.header')
-        </div>
+        
+        <!-- Le menu header tablette -->
+        @include('inspecteur.header')
+        
 
         <div class="row align-items-start" style="min-height:60vh;">
             <div class="container text-center">
@@ -24,7 +24,7 @@
                 <div class="row justify-content-center row-gap-4">
                     <div class="col-6">
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{route('inspecteur.form')}}" class="btn btn-primary w-100" role="button">
+                            <a href="{{ route( 'inspecteur.form' )}}" class="btn btn-primary w-100" role="button">
                                 <p>Bouton Inspection</p>
                                 <div class="image-bouton">
                                     <img src="{{ asset('images/btn-inspection.png') }}" alt="Inspection">
@@ -87,10 +87,10 @@
             </div>
         </div>
         
-        <div class="row align-items-end" style="min-height:8vh;">
-            <!-- Le menu footer tablette -->
-            @include('inspecteur.footer')
-        </div>
+        
+        <!-- Le menu footer tablette -->
+        @include('inspecteur.footer')
+    
 
     </div>
 

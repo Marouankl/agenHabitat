@@ -1,6 +1,6 @@
 
 
-
+<div class="row align-items-start" style="min-height:15vh;">
 
     <div class="container text-center">
         <div class="row justify-content-center align-items-center">
@@ -12,3 +12,5 @@
             <div class="col">{{$user->getAttribute('Nom')}} [photo] + [dropdown]</div>
         </div>
     </div>
+    
+</div>

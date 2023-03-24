@@ -56,8 +56,7 @@ class CustomLoginController extends Controller
         }
 
         // S'il s'agit d'un requête provenant de la page d'acceuil de login
-        // if($request->getRequestUri() == "/checkLogin") return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
-        if($pasTrouve) return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
+        if($pasTrouve && $emailInput != null && $passwordInput != null) return redirect(route('login', ['msg_notAuthenticated' => 'Désolé, une erreur est survenue lors de votre connexion, vérifiez vos identifiants.']));
 
         // si l'utilisateur n'est pas reconnu lors des requêtes subséquentes, redirect vers login 'return view('login');
         return false;
