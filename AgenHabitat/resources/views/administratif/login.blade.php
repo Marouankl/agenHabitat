@@ -15,6 +15,7 @@
             margin: 200px auto;
             padding: 30px;
             text-align: center;
+            border-radius: 20px;
         }
 
         .logo {
@@ -39,8 +40,8 @@
             width: 100%;
             padding: 15px;
             margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
+            border: #060606 2px solid;
+            border-radius: 10px;
         }
 
         button {
@@ -48,7 +49,7 @@
             color: #fff;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
         }
@@ -62,7 +63,7 @@
 <body>
 <div class="container">
     @if(Request::get("msg_notAuthenticated"))
-        <span class="text-danger">{{Request::get("msg_notAuthenticated")}}</span>
+    <div class="alert alert-danger">{{Request::get("msg_notAuthenticated")}}</div>
     @endif
     <img src="https://www.agenhabitat.fr/fileadmin/templates/master/assets/assets_site_agen_habitat/img/svg/done/logo.svg" alt="Logo Agence Habitat" class="logo">
     <h1> Bonjour, veuillez vous connecter ici </h1>

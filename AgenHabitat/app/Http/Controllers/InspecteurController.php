@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inspection;
-use App\Models\Utilisateur;
 use Exception;
 use Illuminate\Http\Request;
 
 class InspecteurController extends Controller
 {
     // vers Le Calendrier
+    public function planifier(Request $req){
+        return view('calendrier', ['user' => session('utilisateur')]);
+    }
 
     // gère l'ajout d'une Nouvelle Inspection
     public function checkAddInspection(Request $req){
@@ -44,9 +46,9 @@ class InspecteurController extends Controller
             $message .= "Inspection envoyée avec succès";
             return redirect(route('inspecteur.index', ['msg' => $message] ));
         }catch(Exception $e){
-            // Sinon (voir comment on détecte cela sur Laravel)
+            // Si il y a eu problème
             $message .= "Désolé, l'ajout de la nouvelle inspection a rencontré quelques problèmes";
-                // Rester sur la page de formulaires avec tous les champs encore remplis comme avant
+                // Rester sur la page de formulaire avec tous les champs encore remplis comme avant
     
             return redirect(route('inspecteur.index', ['msg' => $message] ));
 

@@ -36,7 +36,7 @@ Route::controller(InspecteurController::class)->group(function(){
     Route::any('/inspecteur/inspection', 'newInspection')->name('inspecteur.form')->middleware('auth.custom');
     Route::post('/inspecteur/inspection/send', 'checkAddInspection')->name('inspecteur.checkAddInspection')->middleware('auth.custom');
     Route::post('/inspecteur/inspection/mod', 'checkModnspection')->name('inspecteur.checkModInspection')->middleware('auth.custom');
-    Route::post('/inspecteur/tournee', 'tournees')->name('inspecteur.tournee')->middleware('auth.custom');
+    Route::post('/inspecteur/calendrier', 'planifier')->name('inspecteur.planifie')->middleware('auth.custom');
 }); 
 
 
