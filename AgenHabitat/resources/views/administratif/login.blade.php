@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Login Everyone | Agen Habitat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <style>
         body {
@@ -11,9 +12,9 @@
         .container {
             background-color: rgba(255, 255, 255, 0.8);
             max-width: 600px;
-            height: 600px;
+            height: 800px;
             margin: 200px auto;
-            padding: 30px;
+            padding: 45px;
             text-align: center;
             border-radius: 20px;
         }
@@ -47,10 +48,10 @@
         button {
             background-color: orangered;
             color: #fff;
-            padding: 10px 20px;
+            padding: 35px 40px;
             border: none;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 25px;
             cursor: pointer;
         }
 
@@ -63,7 +64,7 @@
 <body>
 <div class="container">
     @if(Request::get("msg_notAuthenticated"))
-    <div class="alert alert-danger">{{Request::get("msg_notAuthenticated")}}</div>
+        <div class="alert alert-danger" role="alert">{{Request::get("msg_notAuthenticated")}}</div>
     @endif
     <img src="https://www.agenhabitat.fr/fileadmin/templates/master/assets/assets_site_agen_habitat/img/svg/done/logo.svg" alt="Logo Agence Habitat" class="logo">
     <h1> Bonjour, veuillez vous connecter ici </h1>

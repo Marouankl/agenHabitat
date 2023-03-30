@@ -10,7 +10,11 @@ class InspecteurController extends Controller
 {
     // vers Le Calendrier
     public function planifier(Request $req){
-        return view('calendrier', ['user' => session('utilisateur')]);
+        return view('inspecteur.calendrier', [
+            'user' => session('utilisateur'),
+            'insp' => new Inspection,
+            'objet' => $req->objet  
+        ]);
     }
 
     // gère l'ajout d'une Nouvelle Inspection
@@ -27,7 +31,7 @@ class InspecteurController extends Controller
 
         try{
             // Enregistrement dans la base de donnée de tous les champs validés
-            $insp = new Inspection($req->date, session('utilisateur')->Id, 1);
+            $insp = Inspection::initialMandatory($req->date, session('utilisateur')->Id, 1);
             /**
              * tous les attributs de l'inspection ici 
              *  */ 

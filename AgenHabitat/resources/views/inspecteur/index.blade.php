@@ -72,9 +72,7 @@
                     <h2 class="col-12">Bienvenue {{$user->getAttribute('Nom')}}</h2>
                     @if (Request::get("msg"))
                         <div class="alert alert-primary">
-                            <ul>
-                                <li>{{ Request::get("msg") }}</li>
-                            </ul>
+                            {{ Request::get("msg") }}
                         </div>
                     @endif
                 </div>
@@ -91,7 +89,7 @@
                     </div>
                     <div class="col-6">
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{ route( 'inspecteur.form' )}}" class="btn btn-primary w-100" role="button">
+                            <a href="{{route('inspecteur.planifie', ['objet' => 'tournee' ])}}" class="btn btn-primary w-100" role="button">
                                 <p>Bouton Tournée</p>
                                 <div class="image-bouton">
                                     <img class="img-icon" src="{{ asset('images/go-to-work.png') }}" alt="Tournées">
@@ -101,7 +99,7 @@
                     </div>
                     <div class="col-6">
                     <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{route('inspecteur.form')}}" class="btn btn-primary w-100" role="button">
+                            <a href="{{route('inspecteur.planifie', ['objet' => 'calendrier' ])}}" class="btn btn-primary w-100" role="button">
                                 <p>Bouton Calendrier</p>
                                 <div class="image-bouton">
                                     <img class="img-icon" src="{{ asset('images/timetable.png') }}" alt="Calendrier">

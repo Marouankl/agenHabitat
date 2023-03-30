@@ -37,12 +37,18 @@ class Inspection extends Model
      */
     public $timestamps = false;
 
+    // Empty constructor for an Inspection
+    public function __construct(){
+        // assign some important stuff even for an empty Inspection
+    }
    
     // Sets all attributes of an Inspection
-    public function __construct(String $date, int $idInspecteur, int $idTournee){
-        $this->InfoCalendrier = $date;
-        $this->Id_Utilisateur = $idInspecteur;
-        $this->Id_Tournee = $idTournee;
+    public static function initialMandatory(String $date, int $idInspecteur, int $idTournee){
+        $instance = new self();
+        $instance->InfoCalendrier = $date;
+        $instance->Id_Utilisateur = $idInspecteur;
+        $instance->Id_Tournee = $idTournee;
+        return $instance;
     }
 
 

@@ -17,6 +17,6 @@
                     {{$user->getAttribute('Nom')}}
                 </div>
             </div>
+        </div>
     </div>
-    
 </div>
