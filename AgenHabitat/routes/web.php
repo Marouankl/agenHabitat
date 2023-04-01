@@ -24,6 +24,3 @@ Route::controller(LoginController::class)->group(function (){
     Route::get('/login/administratif','login')->name('administratif.login.login');
     Route::post('/login/administratif','ValiderLogin')->name('administratif.index.ValiderLogin');
 });
-
-
-

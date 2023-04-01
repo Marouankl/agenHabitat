@@ -99,7 +99,7 @@
                         <td>{{$inspections->NumInspection }}</td>
                         <td>{{$inspections->utilisateur->Nom}}</td>
                         <td>{{$inspections->InfoCalendrier}}</td>
-                        <td><span class="badge bg-success"></span></td>
+                        <td><span class="badge bg-success">Signature</span></td>
                         <td>
                             <a href="{{ route('administratif.show', $inspections->NumInspection) }}" class="btn btn-primary">Détails</a>
                             <a href="{{ route('administratif.edit', $inspections->NumInspection) }}" class="btn btn-warning">Modifier</a>
@@ -120,16 +120,8 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Nombre d'utilisateurs</h3>
-                        <p class="card-text">123</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-body">
                         <h3 class="card-title">Nombre de rapports</h3>
-                        <p class="card-text">456</p>
+                        <p class="card-text">2</p>
                     </div>
                 </div>
             </div>
@@ -147,108 +139,108 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h3 class="card-title">Tournées en cours</h3>
-                        <p class="card-text">12</p>
+                        <p class="card-text">2</p>
                     </div>
                 </div>
             </div>
         </div>
 
-            <section class="stats">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h3 class="card-title">Statut des rapports</h3>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Signés</div>
-                                    <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">En attente de signature</div>
-                                </div>
+        <section class="stats">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3 class="card-title">Statut des rapports</h3>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Signés</div>
+                                <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">En attente de signature</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
     </section>
-        <section>
-            <!-- Liste des tournées en cours -->
-            <table id="tournées">
-                <caption>Liste des tournées en cours</caption>
-                <thead>
-                <tr>
-                    <th>Nom de la tournée</th>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($inspection as $inspections)
+    <section>
+        <!-- Liste des tournées en cours -->
+        <table id="tournées">
+            <caption>Liste des tournées en cours</caption>
+            <thead>
+            <tr>
+                <th>Nom de la tournée</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($inspection as $inspections)
                 <tr>
 
                     <td>{{$inspections->tournee->NomClient }} </td>
                     <td>{{$inspections->InfoCalendrier }}</td>
                     <td>{{$inspections->tournee->DateRDV }}</td>
                 </tr>
-                @endforeach
-                </tbody>
-            </table>
+            @endforeach
+            </tbody>
+        </table>
 
-            <!-- Diagramme en camembert des états des inspections -->
-            <div id="camembert">
-                <h2>États des inspections</h2>
-                <canvas id="chart"></canvas>
-            </div>
+        <!-- Diagramme en camembert des états des inspections -->
+        <div id="camembert">
+            <h2>États des inspections</h2>
+            <canvas id="chart"></canvas>
+        </div>
 
-                <section class="tri-tournées text-center">
-                    <h3>Tri des tournées</h3>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="tri-date">Tri par date :</label>
-                                <select class="form-control" id="tri-date">
-                                    <option value="plus-recentes">Plus récentes</option>
-                                    <option value="plus-anciennes">Plus anciennes</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="tri-inspecteur">Tri par inspecteur :</label>
-                                <select class="form-control" id="tri-inspecteur">
-                                    <option value="alphabetique">Ordre alphabétique</option>
-                                    <option value="reverse-alphabetique">Ordre alphabétique inverse</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </section>
-            <section class="rapports">
-                <div class="container">
-                    <h2 class="mb-4">Liste des rapports</h2>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col">Numéro</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Inspecteur</th>
-                                <th scope="col">Statut</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($inspection as $inspections)
-                            <tr>
-                                <td>#{{$inspections->NumInspection }}</td>
-                                <td>{{$inspections->InfoCalendrier }}</td>
-                                <td>{{$inspections->utilisateur->Nom }}</td>
-                                <td>Signature </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+        <section class="tri-tournées text-center">
+            <h3>Tri des tournées</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tri-date">Tri par date :</label>
+                        <select class="form-control" id="tri-date">
+                            <option value="plus-recentes">Plus récentes</option>
+                            <option value="plus-anciennes">Plus anciennes</option>
+                        </select>
                     </div>
                 </div>
-            </section>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tri-inspecteur">Tri par inspecteur :</label>
+                        <select class="form-control" id="tri-inspecteur">
+                            <option value="alphabetique">Ordre alphabétique</option>
+                            <option value="reverse-alphabetique">Ordre alphabétique inverse</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="rapports">
+        <div class="container">
+            <h2 class="mb-4">Liste des rapports</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Numéro</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Inspecteur</th>
+                        <th scope="col">Statut</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($inspection as $inspections)
+                        <tr>
+                            <td>#{{$inspections->NumInspection }}</td>
+                            <td>{{$inspections->InfoCalendrier }}</td>
+                            <td>{{$inspections->utilisateur->Nom }}</td>
+                            <td>Signature </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>

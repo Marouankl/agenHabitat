@@ -24,10 +24,10 @@ class AdministratifController extends Controller
         return view('administratif.index',compact('inspection','rapport','utilisateur','tournee'));
 
 
-       /* if(Auth::check()){
-            return redirect('administratif.index');
-        }
-        return redirect('administratif.login')->with('success','you are not allowed to access');*/
+        /* if(Auth::check()){
+             return redirect('administratif.index');
+         }
+         return redirect('administratif.login')->with('success','you are not allowed to access');*/
 
     }
 

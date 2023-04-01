@@ -10,7 +10,7 @@
     <style>
         /* Style pour la section des tournées */
         section{
-           padding: 50px;
+            padding: 50px;
         }
 
         h1{
@@ -80,73 +80,73 @@
     <!-- Liste des tournées en cours -->
     <table id="tournées">
         <h3>Les informations sur Clients </h3>
-                <thead>
-                <tr>
-                    <th>Nom de client</th>
-                    <th> Date de rendez-vous</th>
-                    <th>Adresse de client</th>
-                    <th>téléphone</th>
-                    <th>E-mail</th>
-                    <th>Numero Locatire</th>
-                    <th>Remarque</th>
+        <thead>
+        <tr>
+            <th>Nom de client</th>
+            <th> Date de rendez-vous</th>
+            <th>Adresse de client</th>
+            <th>téléphone</th>
+            <th>E-mail</th>
+            <th>Numero Locatire</th>
+            <th>Remarque</th>
 
 
-                </tr>
-                </thead>
-                <tbody>
+        </tr>
+        </thead>
+        <tbody>
 
-                    <tr>
-                        <td>{{$inspections->tournee->NomClient }}</td>
-                        <td>{{$inspections->tournee->DateRDV }}</td>
-                        <td>{{$inspections->tournee->AdresseClient }}</td>
-                        <td>{{$inspections->tournee->Telephone }}</td>
-                        <td>{{$inspections->tournee->Mail }}</td>
-                        <td>{{$inspections->tournee->NumLocataire }}</td>
-                        <td>{{$inspections->tournee->Remarque }}</td>
+        <tr>
+            <td>{{$inspections->tournee->NomClient }}</td>
+            <td>{{$inspections->tournee->DateRDV }}</td>
+            <td>{{$inspections->tournee->AdresseClient }}</td>
+            <td>{{$inspections->tournee->Telephone }}</td>
+            <td>{{$inspections->tournee->Mail }}</td>
+            <td>{{$inspections->tournee->NumLocataire }}</td>
+            <td>{{$inspections->tournee->Remarque }}</td>
 
 
 
-                    </tr>
+        </tr>
 
-                </tbody>
+        </tbody>
     </table>
 </section>
-  <section>
-      <h3>Les informations sur l'inspection </h3>
-      <table id="tournées">
-          <thead>
-          <tr>
-              <th>Nom d'inspecteur</th>
-              <th>Numero d'inspection</th>
-              <th>Date de l'inspection</th>
-              <th>Type de Batiment</th>
-              <th>Surface de habitatable</th>
-              <th>Releve de consomation chauffage</th>
-              <th>Releve de consomation d'eau</th>
-              <th>Releve de consomation refroidissement</th>
-              <th>Releve GES </th>
-              <th>Statu</th>
-          </tr>
-          </thead>
-          <tbody>
+<section>
+    <h3>Les informations sur l'inspection </h3>
+    <table id="tournées">
+        <thead>
+        <tr>
+            <th>Nom d'inspecteur</th>
+            <th>Numero d'inspection</th>
+            <th>Date de l'inspection</th>
+            <th>Type de Batiment</th>
+            <th>Surface de habitatable</th>
+            <th>Releve de consomation chauffage</th>
+            <th>Releve de consomation d'eau</th>
+            <th>Releve de consomation refroidissement</th>
+            <th>Releve GES </th>
+            <th>Statu</th>
+        </tr>
+        </thead>
+        <tbody>
 
-              <tr>
-                  <td>{{$inspections->utilisateur->Nom}}</td>
-                  <td>{{$inspections->NumInspection }}</td>
-                  <td>{{$inspections->TypeBatiment}}</td>
-                  <td>{{$inspections->AnneeConstruction}}</td>
-                  <td>{{$inspections->SurfaceHabitable}}</td>
-                  <td>{{$inspections->ReleveConsoChauffage}}</td>
-                  <td>{{$inspections->ReleveConsoEau}}</td>
-                  <td>{{$inspections->ReleveConsoRefroidissement}}</td>
-                  <td>{{$inspections->ReleveGES}}</td>
-                  <td></td>
+        <tr>
+            <td>{{$inspections->utilisateur->Nom}}</td>
+            <td>{{$inspections->NumInspection }}</td>
+            <td>{{$inspections->TypeBatiment}}</td>
+            <td>{{$inspections->AnneeConstruction}}</td>
+            <td>{{$inspections->SurfaceHabitable}}</td>
+            <td>{{$inspections->ReleveConsoChauffage}}</td>
+            <td>{{$inspections->ReleveConsoEau}}</td>
+            <td>{{$inspections->ReleveConsoRefroidissement}}</td>
+            <td>{{$inspections->ReleveGES}}</td>
+            <td></td>
 
-              </tr>
+        </tr>
 
-          </tbody>
-      </table>
-  </section>
+        </tbody>
+    </table>
+</section>
 
 
 

@@ -17,3 +17,4 @@ class Rapport extends Model
     }
 
 }
+
