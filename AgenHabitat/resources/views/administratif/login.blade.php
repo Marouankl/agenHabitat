@@ -68,21 +68,22 @@
     @endif
     <img src="https://www.agenhabitat.fr/fileadmin/templates/master/assets/assets_site_agen_habitat/img/svg/done/logo.svg" alt="Logo Agence Habitat" class="logo">
     <h1> Bonjour, veuillez vous connecter ici </h1>
-    <form action="{{route('check')}}" method="post">
+
+    <form class="mt-5" action="{{route('check')}}" method="post">
         <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
-        <label for="email">Identifiant</label>
-        <input type="text" id="email" name="email" required>
+        <label class="fw-medium" for="email">Adresse E-mail</label>
+        <input type="text" id="email" name="email" placeholder="nom.prenom@agen-habitat.com" required>
             @if($errors->has('email'))
                   <span class="text-danger">{{$errors->first('name')}}</span>
             @endif
 
-        <label for="password">Mot de passe</label>
+        <label class="fw-medium" for="password">Mot de passe</label>
         <input type="password" id="password" name="password" required>
             @if($errors->has('password'))
                 <span class="text-danger">{{$errors->first('password')}}</span>
             @endif
-        <button type="submit">Se connecter</button>
+        <button class="mt-4" type="submit">Se connecter</button>
     </form>
 </div>
 </body>

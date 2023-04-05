@@ -6,27 +6,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planifiez vos tournées | inspections</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    
 </head>
 <body>
 
     <div class="container text-center min-vh-100">
         @include('inspecteur.header')
-
+        
         <div class="row align-items-start" style="min-height:60vh;">
-
-            <div class="container">
-
-                <div class="row gap-4">
-                    <h3>Vos tournées</h3>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">Tableau des tournées et Inspections</div>
+            
+        <div class="container">
+            
+            <div class="row mb-5 shadow bg-body-tertiary rounded ">
+                <h3>Vos tournées et inspections correspondantes</h3>
+                <div class="container" style="padding-left: 0px;">
+                    <div class="row">
+                        <div class="col">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        <div class="row text-center" style="width: 650px;">
+                                            <div class="col align-self-start"> <p>Inspection 1 </p></div>    
+                                            <div class="col align-self-center fw-semibold dateDebInsp1"><p>  2023-04-01</p></div>
+                                            <div class="col ml-5 mr-5 fw-semibold dateFinInsp1"><p>2023-04-15</p></div>
+                                            <div class="col align-self-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body" style="overflow-x: auto;white-space: nowrap;">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">N° Inspection</th>
+                                                <th scope="col">Date et heure RDV</th>
+                                                <th scope="col">Adresse Client</th>
+                                                <th scope="col">Contact Client</th>
+                                                <th scope="col">N° de locataire</th>
+                                                <th scope="col">Remarques</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row">INSP0001</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">2</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">3</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            <div class="row text-center" style="width: 650px;">    
+                                                <div class="col align-self-start"> <p>Inspection 2 </p></div> 
+                                                <div class="col align-self-center fw-semibold dateDebInsp2"><p>  2023-04-01</p></div>
+                                                <div class="col ml-5 mr-5 fw-semibold dateFinInsp2"><p>2023-04-15</p></div>
+                                                <div class="col align-self-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            </button>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="overflow-x: auto;white-space: nowrap;">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">N° Inspection</th>
+                                                <th scope="col">Date et heure RDV</th>
+                                                <th scope="col">Adresse Client</th>
+                                                <th scope="col">Contact Client</th>
+                                                <th scope="col">N° de locataire</th>
+                                                <th scope="col">Remarques</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row">INSP0001</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">2</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">3</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            <div class="row text-center" style="width: 650px;">    
+                                                <div class="col align-self-start"> <p>Inspection 3 </p></div> 
+                                                <div class="col align-self-center fw-semibold dateDebInsp3"><p>  2023-04-01</p></div>
+                                                <div class="col ml-5 mr-5 fw-semibold dateFinInsp3"><p>2023-04-15</p></div>
+                                                <div class="col align-self-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            </button>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="overflow-x: auto;white-space: nowrap;">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">N° Inspection</th>
+                                                <th scope="col">Date et heure RDV</th>
+                                                <th scope="col">Adresse Client</th>
+                                                <th scope="col">Contact Client</th>
+                                                <th scope="col">N° de locataire</th>
+                                                <th scope="col">Remarques</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row">INSP0001</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">2</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row">3</th>
+                                                <td>2023-04-02 14:30</td>
+                                                <td>11 Avenue Charles de Fitte</td>
+                                                <td>06 44 44 67 78</td>
+                                                <td>LOC0056</td>
+                                                <td>HLM mis à neuf</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
+                <div class="row mt-3">
                     <h3>Votre Inspection séléctionnée</h3>
 
                     @if ($errors->any())
@@ -39,7 +218,7 @@
                         </div>
                     @endif
                     
-                    L'inspection : {{$insp}}
+                    <!-- L'inspection : {{$insp}}
                     L'objet : {{$objet}}
                     L'utilisateur : {{$user}}
 
@@ -119,7 +298,7 @@
                         <div class="col-12 text-end">
                             <button type="submit" class="btn btn-primary">Terminer Inspection</button>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
                 
             </div>
@@ -129,6 +308,6 @@
         @include('inspecteur.footer')
     </div>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>
