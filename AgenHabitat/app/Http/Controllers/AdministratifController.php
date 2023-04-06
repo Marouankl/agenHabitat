@@ -31,6 +31,7 @@ class AdministratifController extends Controller
 
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -127,6 +128,17 @@ class AdministratifController extends Controller
         $inspection= Inspection::find($NumInspection);
         $inspection->delete();
         return redirect()->route('administratif.index')->with('success','rapport deleted successfully');;
+
+    }
+
+    public function stat(){
+        $inspection= Inspection::with('rapport','utilisateur','tournee')->get();
+        $rapport= Rapport::with('inspection')->get();
+        $utilisateur= Rapport::with('inspection')->get();
+        $tournee= Rapport::with('inspection')->get();
+
+        return view('administratif.statique',compact('inspection','rapport','utilisateur','tournee'));
+
 
     }
 

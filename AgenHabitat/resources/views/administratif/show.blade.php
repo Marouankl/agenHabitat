@@ -63,10 +63,10 @@
                                 <a class="nav-link" href="{{ route('administratif.index')}}">Accueil </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Rapports</a>
+                                <a class="nav-link" href="#">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Statistiques</a>
+                                <a class="nav-link" href="{{ route('administratif.statique.stat')}}">Statistiques</a>
                             </li>
                         </ul>
                     </div>

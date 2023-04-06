@@ -12,4 +12,6 @@ class Controller extends BaseController
     public function welcomes(){
         return view('welcome');
     }
+
+
 }
