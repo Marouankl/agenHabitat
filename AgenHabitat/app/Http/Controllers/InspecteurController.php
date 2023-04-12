@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class InspecteurController extends Controller
 {
+
+    //gère la modification d'une inspection
+    public function checkModInspection(Request $req){
+        return view('inspecteur.calendrier')->with("message_success", "L'inspection sélectionnée a bien été mofifiée");
+    }
     // vers Le Calendrier
     public function planifier(Request $req){
         return view('inspecteur.calendrier', [

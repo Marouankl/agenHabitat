@@ -69,7 +69,7 @@
         <div class="row align-items-start" style="min-height:60vh;">
             <div class="container text-center">
                 <div class="row">
-                    <h2 class="col-12">Bienvenue {{$user->getAttribute('Nom')}}</h2>
+                    <h2 class="col-12 mb-5">Bienvenue {{$user->getAttribute('Nom')}}</h2>
                     @if (Request::get("msg"))
                         <div class="alert alert-primary">
                             {{ Request::get("msg") }}
